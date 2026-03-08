@@ -5,10 +5,20 @@ import mongoose from "mongoose";
 import { DB_NAME } from "./constants.js"
 
 import connectDB from "./db/index.js";
+import {app} from "./app.js";
 
 dotenv.config({path:"./env"});// and do this we need to change in the package.json file 
 
-connectDB();
+connectDB()
+.then(()=>{
+    app.listen(process.env.PORT || 8000,()=>{
+        console.log(`app is running on port ${process.env.PORT}`);
+    })
+})
+// in the catch we will handle the error 
+.catch((Error)=>{
+    console.log(Error);
+})
 
 
 
