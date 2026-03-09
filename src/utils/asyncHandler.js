@@ -1,9 +1,11 @@
 // this is the 2nd part of the asynchandler , it is a utility function that will handel the code of conncetion and etc we will learn about this again 
 
 
-const asyncHandler = (requestHandler)=>{(req,res,next)=>{
+const asyncHandler = (requestHandler)=>{return (req,res,next)=>{
     Promise.resolve(requestHandler(req,res,next)).catch((err)=> next(err))
-}}
+}
+
+}
 
 export {asyncHandler}
 

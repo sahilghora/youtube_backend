@@ -22,5 +22,12 @@ app.use(express.static("public"))// it is a part that can be access by the publi
 // now we use cookie persar so it can access the cookies of the user and perform curd operation on then 
 app.use(cookieParser())
 
+// routs import 
+
+import userRouter from './routes/user.routs.js'
+
+// routs decleration 
+app.use("/api/v1/users",userRouter)
+
 
 export {app}
