@@ -20,6 +20,7 @@ class ApiError extends Error{
     }
 
 }
+export {ApiError}
 
 // here we handel the api errors , and know how to handel it is very imp and it will use in various way 
 // how api error will appear and how to handel it in a single file and we will use this file in various way export {ApiError}

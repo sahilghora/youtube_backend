@@ -3,7 +3,7 @@ import fs from "fs";
 
 
 
-(async function() {
+
 
     // Configuration
     cloudinary.config({ 
@@ -13,7 +13,8 @@ import fs from "fs";
     });
     
     // Upload an image
-     const uploadResult = await cloudinary.uploader
+    /*
+     const uploadOnCloudinary = async = await cloudinary.uploader
        .upload(
            'https://res.cloudinary.com/demo/image/upload/getting-started/shoes.jpg', {
                public_id: 'shoes',
@@ -45,5 +46,28 @@ import fs from "fs";
         height: 500,
     });
     
-    console.log(autoCropUrl);    
-})();
+    console.log(autoCropUrl);   */
+    const uploadOnCloudinary = async (loadFilePath) =>{
+        try{
+            if(!loadFilePath) return null;
+            const response = await cloudinary.uploader.upload(
+                loadFilePath,{
+                    resource_type:"auto"
+
+                }
+            
+            )
+            console.log("file is uploaded on cloudnary",
+                response.url
+            );
+            return response;
+
+        }
+        catch(error){
+            fs.unlinkSync(loadFilePath)
+            return null;
+        }
+    } 
+
+
+export {uploadOnCloudinary}
